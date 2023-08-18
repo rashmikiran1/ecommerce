@@ -1,6 +1,28 @@
 .product {
     display: flex;
     justify-content: center;
-    gap:70px;
-    
+    gap:200px;
+    flex-wrap: wrap;
 }
+.title {
+    text-align: center;
+}
+.cart {
+    display: flex;
+    justify-content: space-between;
+}
+
+.imageContainer {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .image {
+    max-width: 100%;
+    height: auto;
+    transition: transform 0.9s ease-in-out; 
+  }
+  
+  .image:hover {
+    transform: scale(1.5); 
+  }

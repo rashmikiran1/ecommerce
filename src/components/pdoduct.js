@@ -6,7 +6,7 @@ const productsArr = [
 
     {
     
-    title: 'Colors',
+    title: 'Album 1',
     
     price: 100,
     
@@ -16,7 +16,7 @@ const productsArr = [
     
     {
     
-    title: 'Black and white Colors',
+    title: 'Album 2',
     
     price: 50,
     
@@ -26,7 +26,7 @@ const productsArr = [
     
     {
     
-    title: 'Yellow and Black Colors',
+    title: 'Album 3',
     
     price: 70,
     
@@ -36,7 +36,7 @@ const productsArr = [
     
     {
     
-    title: 'Blue Color',
+    title: 'Album 4',
     
     price: 100,
     
@@ -46,22 +46,26 @@ const productsArr = [
     
     ]
     
-    const { addToCart, cart } = useCart();
+    const { addToCart } = useCart();
 
-    const getQuantityInCart = (title) => {
-        const cartItem = cart.find((item) => item.title === title);
-        return cartItem ? cartItem.quantity : 0;
-      };
 
      return (
         <div className={classes.product}>
         {productsArr.map((product, index) => (
         <div key={index}>
-          <img src={product.imageUrl} alt={product.title} />
-          <h2>{product.title}</h2>
+          <h2 className={classes.title}>{product.title}</h2>
+          <div className={classes.imageContainer}>
+            <img
+              src={product.imageUrl}
+              alt={product.title}
+              className={classes.image}
+            />
+          </div>
+          <div className={classes.cart}>
           <p>Price: ${product.price}</p>
-          <p>Quantity in Cart: {getQuantityInCart(product.title)}</p>
+        
           <button onClick={() => addToCart(product)}>ADD TO CART</button>
+          </div>
         </div>
       ))}
         

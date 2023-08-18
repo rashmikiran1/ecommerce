@@ -1,24 +1,32 @@
 .header {
     display: flex;
-    padding: 10px;
+    height: 40px;
     background-color: black;
     justify-content: space-between;
     position: fixed;
     width: 100%;
+    top: 0;
   }
   
   .centerItems {
     display: flex;
     gap: 15px;
     color: aliceblue;
-    
+    align-items: center;
   }
   
   .cart {
     background-color: #ff9900;
-    padding: 10px 10px;
     color: white;
     border-radius: 5px;
     justify-content: flex-end;
   }
-  
+  .genre {
+    width: 100%;  
+    text-align: center;
+    background-color: gray;
+    color: azure;
+    font-size: 80px;
+    height: 150px;
+    padding: 20px;
+  }

@@ -1,9 +1,6 @@
-.header {
-    text-align: center;
-    top: 0;
-}
 
 .cart {
     display: flex;
     gap: 60px;
+    padding: 10px;
 }
