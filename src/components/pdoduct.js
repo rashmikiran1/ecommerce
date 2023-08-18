@@ -48,9 +48,10 @@ const productsArr = [
         <div>
         {productsArr.map((product, index) => (
         <div key={index}>
+          <img src={product.imageUrl} alt={product.title} />
           <h2>{product.title}</h2>
           <p>Price: ${product.price}</p>
-          <img src={product.imageUrl} alt={product.title} />
+         
         </div>
       ))}
         </div>

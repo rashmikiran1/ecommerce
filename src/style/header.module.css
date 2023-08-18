@@ -1,0 +1,21 @@
+.header {
+    display: flex;
+    padding: 10px;
+    background-color: black;
+    justify-content: space-between;
+  }
+  
+  .centerItems {
+    display: flex;
+    gap: 15px;
+    color: aliceblue;
+  }
+  
+  .cart {
+    background-color: #ff9900;
+    padding: 10px 10px;
+    color: white;
+    border-radius: 5px;
+    justify-content: flex-end;
+  }
+  
