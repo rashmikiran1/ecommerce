@@ -2,24 +2,29 @@
   
   .modal {
     position: fixed;
-    top: 20vh;
-    left: 5%;
-    width: 100%;
+    top: 60px;
+    right: 0;
+    width: auto;
     background-color:whitesmoke;
     padding: 1rem;
-    border-radius: 20px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
-    z-index: 30;
     animation: slide-down 300ms ease-out forwards;
+    border: 10px;
+    border-color: brown;
   }
-  
-  @media (min-width: 768px) {
-    .modal {
-      width: 40rem;
-      left: calc(50% - 20rem);
-    }
+
+  .style {
+    display: flex;
+    justify-content: space-between;
+    font-style: italic;
+    font-weight: bolder;
+    gap: 60px;
+    padding: 10px;
   }
-  
+  .title {
+    text-align: center;
+  }
+
   @keyframes slide-down {
     from {
       opacity: 0;

@@ -3,12 +3,15 @@
     padding: 10px;
     background-color: black;
     justify-content: space-between;
+    position: fixed;
+    width: 100%;
   }
   
   .centerItems {
     display: flex;
     gap: 15px;
     color: aliceblue;
+    
   }
   
   .cart {
