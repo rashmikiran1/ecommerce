@@ -1,14 +1,5 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import classes from '../style/home.module.css';
-
-const MovieItem = React.memo(({ title, director, releaseDate }) => (
-  <p className={classes.item}>
-    <span className={classes.itemSpan}>{title}</span>
-    <span className={classes.itemSpan}>{director}</span>
-    <span className={classes.itemSpan}>{releaseDate}</span>
-    <span className={classes.itemSpan}><button>buy tickets</button></span>
-  </p>
-));
 
 const Home = () => {
   const [movies, setMovies] = useState([]);
@@ -18,38 +9,79 @@ const Home = () => {
     releaseDate: '',
   });
 
-  const fetchMovies = useCallback(async () => {
-    try {
-      const response = await fetch('https://swapi.dev/api/films');
-      const data = await response.json();
-      setMovies(data.results);
-    } catch (error) {
-      console.error('Error fetching movies:', error);
+  useEffect(() => {
+    async function fetchMovies() {
+      try {
+        const response = await fetch('https://ecommerce-ad7ec-default-rtdb.firebaseio.com/movies.json');
+        const data = await response.json();
+        if (data) {
+          const moviesArray = Object.keys(data).map(key => ({ id: key, ...data[key] }));
+          setMovies(moviesArray);
+        }
+      } catch (error) {
+        console.error('Error fetching movies:', error);
+      }
     }
+
+    fetchMovies();
   }, []);
 
-  useEffect(() => {
-    fetchMovies();
-  }, [fetchMovies]);
+  const handleDeleteMovie = async (id) => {
+    try {
+      const response = await fetch(`https://ecommerce-ad7ec-default-rtdb.firebaseio.com/movies/${id}.json`, {
+        method: "DELETE"
+      });
 
+      if (response.ok) {
+        setMovies(prevMovies => prevMovies.filter(movie => movie.id !== id));
+      } else {
+        console.error("Error deleting movie from Firebase");
+      }
+    } catch (error) {
+      console.error("Error deleting movie:", error);
+    }
+  };
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
-  const handleAddMovie = () => {
+  const handleAddMovie = async () => {
     if (formData.title && formData.director && formData.releaseDate) {
-      setMovies((prevMovies) => [
-        ...prevMovies,
-        { ...formData, release_date: formData.releaseDate },
-      ]);
-      setFormData({
-        title: '',
-        director: '',
-        releaseDate: '',
-      });
+      try {
+        const newMovie = {
+          title: formData.title,
+          director: formData.director,
+          release_date: formData.releaseDate
+        };
+
+        const response = await fetch(
+          "https://ecommerce-ad7ec-default-rtdb.firebaseio.com/movies.json", 
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(newMovie)
+          }
+        );
+
+        if (response.ok) {
+          setMovies((prevMovies) => [...prevMovies, newMovie]);
+          setFormData({
+            title: '',
+            director: '',
+            releaseDate: '',
+          });
+        } else {
+          console.error("Error adding movie to Firebase");
+        }
+      } catch (error) {
+        console.error("Error adding movie:", error);
+      }
     }
   };
+
 
   return (
     <div>
@@ -82,12 +114,12 @@ const Home = () => {
         </button>
       </form>
       {movies.map((movie, index) => (
-        <MovieItem
-          key={index}
-          title={movie.title}
-          director={movie.director}
-          releaseDate={movie.release_date}
-        />
+         <div className={classes.item} key={index}>
+         <span className={classes.itemSpan}>{movie.title}</span>
+         <span className={classes.itemSpan}>{movie.director}</span>
+         <span className={classes.itemSpan}>{movie.releaseDate}</span>
+         <button onClick={() => handleDeleteMovie(movie.id)}>Delete Movie</button>
+       </div>
       ))}
     </div>
   );
