@@ -24,6 +24,9 @@ const Header = ()=> {
         <NavLink to="/about" activeClassName={classes.activeLink}>
         ABOUT
         </NavLink>
+        <NavLink to="/contact" activeClassName={classes.activeLink}>
+        CONTACT
+        </NavLink>
         </div>
         <button className={classes.cart} onClick={toggleCartModal}>CART  ({cart.length})</button>
         {isCartModalVisible && <Cart />}
