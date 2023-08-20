@@ -1,0 +1,29 @@
+.productDetails {
+    display: flex;
+    align-items: flex-start;
+  }
+  
+  .smallImages {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .smallImage {
+    width: 150px;
+    cursor: pointer;
+  }
+  
+  .mainImage {
+    margin-left: 20px;
+    position: relative; /* Add this */
+  }
+  
+  .image {
+    width: 500px;
+    max-width: 100%;
+    height: auto;
+  }
+  
+  
+  

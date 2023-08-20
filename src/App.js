@@ -6,21 +6,68 @@ import Products from "./components/pdoduct";
 import Home from "./components/home";
 import Footer from "./components/footer";
 import Contact from "./components/contact";
+import ProductDetails from "./components/productDetails";
 
 
 function App() {
+  const productsArr = [
+
+    {
+    
+    title: 'Album 1',
+    
+    price: 100,
+    
+    imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%201.png',
+    image1: 'https://prasadyash2411.github.io/ecom-website/img/Album%201.png',
+    image2:'https://prasadyash2411.github.io/ecom-website/img/Album%203.png'
+    },
+    
+    {
+    
+    title: 'Album 2',
+    
+    price: 50,
+    
+    imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%202.png',
+    
+    },
+    
+    {
+    
+    title: 'Album 3',
+    
+    price: 70,
+    
+    imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%203.png',
+    
+    },
+    
+    {
+    
+    title: 'Album 4',
+    
+    price: 100,
+    
+    imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%204.png',
+    
+    }
+    
+    ]
+  
   return (
     <Router>
-    <div>
-      <Header />
+     <Header />
       <Routes>
+        
         <Route path="/about" element={<ABOUT />} />
         <Route path="/" element={<Products />} />
         <Route path="/home" element={<Home />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/product/:index" element={<ProductDetails products={productsArr} />
+} />
       </Routes>
-      <Footer />
-    </div>
+      <Footer />    
   </Router>
   );
 }

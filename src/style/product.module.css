@@ -26,3 +26,8 @@
   .image:hover {
     transform: scale(1.5); 
   }
+  .product button {
+    border: none;
+    background-color: white;
+    cursor: pointer;
+  }

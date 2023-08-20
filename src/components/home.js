@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import classes from '../style/home.module.css';
 
+
 const Home = () => {
   const [movies, setMovies] = useState([]);
   const [formData, setFormData] = useState({
     title: '',
     director: '',
-    releaseDate: '',
+    releasedate: '',
+    image:null,
   });
 
   useEffect(() => {
@@ -42,17 +44,18 @@ const Home = () => {
     }
   };
   const handleInputChange = (event) => {
-    const { name, value } = event.target;
+    const { name, value} = event.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
   const handleAddMovie = async () => {
-    if (formData.title && formData.director && formData.releaseDate) {
+    if (formData.title && formData.director && formData.releasedate && formData.image) {
       try {
         const newMovie = {
           title: formData.title,
           director: formData.director,
-          release_date: formData.releaseDate
+          releasedate: formData.releasedate,
+          image:formData.image,
         };
 
         const response = await fetch(
@@ -71,7 +74,8 @@ const Home = () => {
           setFormData({
             title: '',
             director: '',
-            releaseDate: '',
+            releasedate: '',
+            image:null,
           });
         } else {
           console.error("Error adding movie to Firebase");
@@ -103,12 +107,20 @@ const Home = () => {
           placeholder="Director"
         />
         <input
-          type="text"
-          name="releaseDate"
-          value={formData.releaseDate}
+          type="date"
+          name="releasedate"
+          value={formData.releasedate}
           onChange={handleInputChange}
-          placeholder="Release Date"
+          placeholder="ReleaseDate"
         />
+         <input
+          type="file" 
+          value={formData.image}
+          name="image"
+          accept="image/*"
+          onChange={handleInputChange}
+        />
+
         <button type="button" onClick={handleAddMovie}>
           Add Movie
         </button>
@@ -117,10 +129,12 @@ const Home = () => {
          <div className={classes.item} key={index}>
          <span className={classes.itemSpan}>{movie.title}</span>
          <span className={classes.itemSpan}>{movie.director}</span>
-         <span className={classes.itemSpan}>{movie.releaseDate}</span>
+         <span className={classes.itemSpan}>{movie.releasedate}</span>
+         
+         <img src={movie.image} alt="hb" className={classes.image} />
          <button onClick={() => handleDeleteMovie(movie.id)}>Delete Movie</button>
        </div>
-      ))}
+      ))}  
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import React from "react";
 import { useCart } from "../store/cartContext";
 import classes from '../style/product.module.css';
+import { Link } from "react-router-dom";
 const Products = ()=> {
 const productsArr = [
 
@@ -11,6 +12,8 @@ const productsArr = [
     price: 100,
     
     imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%201.png',
+    image1: 'https://prasadyash2411.github.io/ecom-website/img/Album%201.png',
+    image2:'https://prasadyash2411.github.io/ecom-website/img/Album%203.png'
     
     },
     
@@ -55,11 +58,13 @@ const productsArr = [
         <div key={index}>
           <h2 className={classes.title}>{product.title}</h2>
           <div className={classes.imageContainer}>
+          <Link to={`/product/${index}`}>
             <img
               src={product.imageUrl}
               alt={product.title}
               className={classes.image}
             />
+            </Link>
           </div>
           <div className={classes.cart}>
           <p>Price: ${product.price}</p>

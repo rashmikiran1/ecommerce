@@ -15,16 +15,16 @@ const Header = ()=> {
         <Fragment>
         <div className={classes.header}>
         <div className={classes.centerItems}>
-        <NavLink to="/home" activeClassName={classes.activeLink}>
+        <NavLink to="/home" className={classes.link}>
         HOME
         </NavLink>
-        <NavLink to="/" activeClassName={classes.activeLink}>
+        <NavLink to="/" className={classes.link}>
         STORE
         </NavLink>
-        <NavLink to="/about" activeClassName={classes.activeLink}>
+        <NavLink to="/about" className={classes.link}>
         ABOUT
         </NavLink>
-        <NavLink to="/contact" activeClassName={classes.activeLink}>
+        <NavLink to="/contact" className={classes.link}>
         CONTACT
         </NavLink>
         </div>
