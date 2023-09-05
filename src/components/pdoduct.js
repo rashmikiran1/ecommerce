@@ -59,7 +59,7 @@ const productsArr = [
           <h2 className={classes.title}>{product.title}</h2>
           <div className={classes.imageContainer}>
           <Link to={`/product/${index}`}>
-            <img
+            <img 
               src={product.imageUrl}
               alt={product.title}
               className={classes.image}

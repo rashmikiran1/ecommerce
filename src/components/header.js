@@ -39,7 +39,7 @@ const Header = ()=> {
         </NavLink>
         )}
         <NavLink to="/" className={classes.link}>
-        
+        SignUp
         </NavLink>
         </div>
         <button className={classes.cart} onClick={toggleCartModal}>CART  ({cart.length})</button>

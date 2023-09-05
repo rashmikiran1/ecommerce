@@ -52,8 +52,8 @@ const handleSubmit = (event) => {
     fetch(url, {
       method: 'POST',
       body: JSON.stringify({
-        email,
-        password,
+        email:email,
+        password:password,
         returnSecureToken: true,
       }),
       headers: {

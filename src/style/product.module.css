@@ -1,8 +1,8 @@
 .product {
     display: flex;
     justify-content: center;
-    gap:200px;
     flex-wrap: wrap;
+
 }
 .title {
     text-align: center;
@@ -11,10 +11,17 @@
     display: flex;
     justify-content: space-between;
 }
+.cart button{
+  margin-right: 100px;
+}
+.cart p{
+  margin-left: 100px;
+}
 
 .imageContainer {
     position: relative;
     overflow: hidden;
+    margin: 0px 100px 0px 100px;
   }
   
   .image {
