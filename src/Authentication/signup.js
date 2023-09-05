@@ -1,6 +1,7 @@
 import React, { useContext, useRef, useState } from 'react';
 import classes from '../style/signup.module.css';
 import Authcontext from '../store/authContext';
+import { Link } from 'react-router-dom';
 
 function SignupForm() {
   const emailinputRef = useRef();
@@ -105,6 +106,7 @@ const handleSubmit = (event) => {
         </div>
         <button  type="submit">
             {isLogin? 'login' : 'create account'}</button>
+            <Link to="/password">Change Password</Link>
         <div>
           <button className={classes.submitButton} type="button" onClick={switchHandler}>
             {isLogin? 'create new account' : 'login with existing account'}</button>
