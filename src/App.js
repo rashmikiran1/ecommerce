@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { BrowserRouter as Router, Routes,Route, Navigate} from "react-router-dom";
 import Header from './components/header';
 import ABOUT from './components/about';
@@ -9,6 +9,7 @@ import Contact from "./components/contact";
 import ProductDetails from "./components/productDetails";
 import SignupForm from "./Authentication/signup";
 import Password from "./Authentication/newPassword";
+import AuthContext from "./store/authContext";
 
 
 function App() {
@@ -56,17 +57,27 @@ function App() {
     }
     
     ]
-  
+  const authCtx = useContext(AuthContext);
   return (
     <Router>
       <Header />
       <Routes>
         <Route path="/" element={<SignupForm />} />
+        {authCtx.isLoggedIn && (
         <Route path="/about" element={<ABOUT />} />
+        )}
+        {authCtx.isLoggedIn && (
         <Route path="/store" element={<Products />} />
+        )}
+        {authCtx.isLoggedIn && (
         <Route path="/contact" element={<Contact />} />
+        )}
+        {authCtx.isLoggedIn && (
         <Route path="/product/:index" element={<ProductDetails products={productsArr} />} />
+        )}
+        {authCtx.isLoggedIn && (
         <Route path="/home" element={<Home />} />
+        )}
         <Route path="/password" element={<Password />} />
       </Routes>
       <Footer />
