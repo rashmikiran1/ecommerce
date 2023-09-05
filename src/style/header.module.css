@@ -22,13 +22,30 @@
     justify-content: flex-end;
   }
   .genre {
-    width: 100%;  
+    width: 100%;
     text-align: center;
     background-color: gray;
     color: azure;
     font-size: 80px;
     height: 150px;
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .logout {
+    font-size: 20px;
+    display: flex;
+  }
+  .signup {
+    text-decoration: none;
+    padding: 5px;
+    background-color: gray;
+    border: none;
+    color: rgb(83, 4, 65);
+    font-size: 20px;
+    cursor: pointer;
   }
   .link {
     text-decoration: none;

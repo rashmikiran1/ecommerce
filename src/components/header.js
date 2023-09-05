@@ -14,6 +14,9 @@ const Header = ()=> {
     const { cart } = useCart();
     const authCtx = useContext(AuthContext);
     const isLoggedIn = authCtx.isLoggedIn;
+    const handleLogout = () => {
+      authCtx.logout();
+    };
     return (
         <Fragment>
         <div className={classes.header}>
@@ -38,14 +41,19 @@ const Header = ()=> {
         CONTACT
         </NavLink>
         )}
-        <NavLink to="/" className={classes.link}>
-        SignUp
-        </NavLink>
+        
         </div>
         <button className={classes.cart} onClick={toggleCartModal}>CART  ({cart.length})</button>
         {isCartModalVisible && <Cart />}
         </div>
-        <div className={classes.genre}>THE GENERICS</div>
+        <div className={classes.genre}>THE GENERICS
+        <div className={classes.logout}>
+        <NavLink to="/" className={classes.signup}>
+        SignUp
+        </NavLink>
+        <button onClick={handleLogout} className={classes.signup}>Logout</button>
+        </div>
+        </div>
         </Fragment>
     )
 }
