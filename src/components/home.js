@@ -52,7 +52,7 @@ const Home = () => {
     if (formData.title && formData.director && formData.releasedate && formData.image) {
       try {
         const newMovie = {
-          title: formData.title,
+          email: formData.title,
           director: formData.director,
           releasedate: formData.releasedate,
           image:formData.image,
