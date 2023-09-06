@@ -1,7 +1,7 @@
-import React, { useContext, useRef, useState } from 'react';
+import React, { useContext, useRef, useState, } from 'react';
 import classes from '../style/signup.module.css';
 import Authcontext from '../store/authContext';
-import { Link} from 'react-router-dom';
+import { Link, Navigate} from 'react-router-dom';
 
 function SignupForm() {
   const emailinputRef = useRef();
@@ -113,7 +113,7 @@ const handleSubmit = (event) => {
           <button className={classes.submitButton} type="button" onClick={switchHandler}>
             {isLogin? 'create new account' : 'login with existing account'}</button>
         </div>
-        
+        {authCtx.isLoggedIn && <Navigate to="/store" />}
       </form>
     </div>
   );
