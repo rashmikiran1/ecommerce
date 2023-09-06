@@ -21,27 +21,18 @@ const Header = ()=> {
         <Fragment>
         <div className={classes.header}>
         <div className={classes.centerItems}>
-        {isLoggedIn && (
         <NavLink to="/home" className={classes.link}>
         HOME
         </NavLink>
-        )}
-        {isLoggedIn && (
-        <NavLink to="/store" className={classes.link}>
+        <NavLink to="private/store" className={classes.link}>
         STORE
         </NavLink>
-        )}
-        {isLoggedIn && (
         <NavLink to="/about" className={classes.link}>
         ABOUT
-        </NavLink>
-        )}
-        {isLoggedIn && (
+        </NavLink>        
         <NavLink to="/contact" className={classes.link}>
         CONTACT
         </NavLink>
-        )}
-        
         </div>
         <button className={classes.cart} onClick={toggleCartModal}>CART  ({cart.length})</button>
         {isCartModalVisible && <Cart />}
@@ -49,7 +40,7 @@ const Header = ()=> {
         <div className={classes.genre}>THE GENERICS
         <div className={classes.logout}>
         <NavLink to="/" className={classes.signup}>
-        SignUp
+        Login
         </NavLink>
         <button onClick={handleLogout} className={classes.signup}>Logout</button>
         </div>

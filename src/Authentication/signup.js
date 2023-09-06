@@ -17,44 +17,14 @@ const handleSubmit = (event) => {
   event.preventDefault();
   const email = emailinputRef.current.value;
   const password = passwordinputRef.current.value;
-  let url;
-
-  if (isLogin) {
-    url = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCGIlzbT0foDEl35J3c9DtKR1fC7K_Tkaw';
-    fetch(url, {
-        method: 'POST',
-        body: JSON.stringify({
-          email,
-          password,
-          returnSecureToken: true,
-        }),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
-        .then((res) => {
-          if (res.ok) {
-           return res.json();
-          } else {
-            return res.json().then((data) => {
-              let errorMessage = 'Authentication Failed';
-              console.error('API Error:', data.error);
-              throw new Error(errorMessage)
-            });
-          }
-        }).then((data)=> {
-          authCtx.login(data.idToken);
-        })
-         .catch((err) => {
-          alert(err.message)
-        });
-  } else {
-    url = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCGIlzbT0foDEl35J3c9DtKR1fC7K_Tkaw';
+    const url = isLogin ?
+      'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCGIlzbT0foDEl35J3c9DtKR1fC7K_Tkaw' :
+      'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCGIlzbT0foDEl35J3c9DtKR1fC7K_Tkaw';
     fetch(url, {
       method: 'POST',
       body: JSON.stringify({
-        email:email,
-        password:password,
+        email,
+        password,
         returnSecureToken: true,
       }),
       headers: {
@@ -63,7 +33,7 @@ const handleSubmit = (event) => {
     })
       .then((res) => {
         if (res.ok) {
-         return res.json();
+          return res.json();
         } else {
           return res.json().then((data) => {
             let errorMessage = 'Authentication Failed';
@@ -71,15 +41,16 @@ const handleSubmit = (event) => {
             throw new Error(errorMessage)
           });
         }
-      }).then((data)=> {
       })
-       .catch((err) => {
+      .then((data) => {
+        if (isLogin) {
+          authCtx.login(data.idToken);
+        }
+      })
+      .catch((err) => {
         alert(err.message)
       });
-  }
-};
-
-
+  };
   return (
     <div className={classes.contactContainer}>
       <h1 className={classes.title} >{isLogin ? "login" : "sign up"}</h1>
@@ -113,7 +84,7 @@ const handleSubmit = (event) => {
           <button className={classes.submitButton} type="button" onClick={switchHandler}>
             {isLogin? 'create new account' : 'login with existing account'}</button>
         </div>
-        {authCtx.isLoggedIn && <Navigate to="/store" />}
+        {authCtx.isLoggedIn && <Navigate to="/home" />}
       </form>
     </div>
   );

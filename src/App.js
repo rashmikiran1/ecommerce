@@ -9,7 +9,7 @@ import Contact from "./components/contact";
 import ProductDetails from "./components/productDetails";
 import SignupForm from "./Authentication/signup";
 import Password from "./Authentication/newPassword";
-import AuthContext from "./store/authContext";
+import PrivateRoute from "./Authentication/privateRoute";
 
 
 function App() {
@@ -57,27 +57,18 @@ function App() {
     }
     
     ]
-  const authCtx = useContext(AuthContext);
   return (
     <Router>
       <Header />
       <Routes>
         <Route path="/" element={<SignupForm />} />
-        {authCtx.isLoggedIn && (
         <Route path="/about" element={<ABOUT />} />
-        )}
-        {authCtx.isLoggedIn && (
-        <Route path="/store" element={<Products />} />
-        )}
-        {authCtx.isLoggedIn && (
+        <Route path="/private" element={<PrivateRoute />}>
+          <Route path="store" element={<Products />} />
+        </Route>
         <Route path="/contact" element={<Contact />} />
-        )}
-        {authCtx.isLoggedIn && (
         <Route path="/product/:index" element={<ProductDetails products={productsArr} />} />
-        )}
-        {authCtx.isLoggedIn && (
         <Route path="/home" element={<Home />} />
-        )}
         <Route path="/password" element={<Password />} />
       </Routes>
       <Footer />
