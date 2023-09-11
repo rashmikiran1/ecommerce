@@ -44,9 +44,10 @@ const handleSubmit = (event) => {
       })
       .then((data) => {
         if (isLogin) {
-          authCtx.login(data.idToken);
+          authCtx.login(data.idToken, data.email); // Pass both token and email
         }
       })
+      
       .catch((err) => {
         alert(err.message)
       });

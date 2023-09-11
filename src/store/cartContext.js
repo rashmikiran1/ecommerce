@@ -1,9 +1,19 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useState, useEffect } from "react";
+import { getCartData, saveCartData } from "./cartStorage";
+import AuthContext from "./authContext";
 
 const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
+  const authCtx = useContext(AuthContext);
+
+  useEffect(() => {
+    const userCart = getCartData(authCtx.email);
+    if (userCart) {
+      setCart(userCart);
+    }
+  }, [authCtx.email]);
 
   const addToCart = (item) => {
     const existingItem = cart.find((cartItem) => cartItem.title === item.title);
@@ -19,10 +29,15 @@ export const CartProvider = ({ children }) => {
       setCart((prevCart) => [...prevCart, { ...item, quantity: 1 }]);
     }
   };
-
+  
   const removeFromCart = (item) => {
     setCart((prevCart) => prevCart.filter((cartItem) => cartItem.title !== item.title));
   };
+  
+  useEffect(() => {
+    saveCartData(authCtx.email, cart); 
+  }, [cart, authCtx.email]);
+  
 
   return (
     <CartContext.Provider value={{ cart, addToCart, removeFromCart }}>

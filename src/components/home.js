@@ -8,7 +8,6 @@ const Home = () => {
     title: '',
     director: '',
     releasedate: '',
-    image:null,
   });
 
   useEffect(() => {
@@ -49,13 +48,12 @@ const Home = () => {
   };
 
   const handleAddMovie = async () => {
-    if (formData.title && formData.director && formData.releasedate && formData.image) {
+    if (formData.title && formData.director && formData.releasedate) {
       try {
         const newMovie = {
           email: formData.title,
           director: formData.director,
           releasedate: formData.releasedate,
-          image:formData.image,
         };
 
         const response = await fetch(
@@ -75,7 +73,6 @@ const Home = () => {
             title: '',
             director: '',
             releasedate: '',
-            image:null,
           });
         } else {
           console.error("Error adding movie to Firebase");
@@ -112,13 +109,6 @@ const Home = () => {
           value={formData.releasedate}
           onChange={handleInputChange}
           placeholder="ReleaseDate"
-        />
-         <input
-          type="file" 
-          value={formData.image}
-          name="image"
-          accept="image/*"
-          onChange={handleInputChange}
         />
 
         <button type="button" onClick={handleAddMovie}>

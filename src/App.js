@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import { BrowserRouter as Router, Routes,Route, Navigate} from "react-router-dom";
+import React from "react";
+import { BrowserRouter as Router, Routes,Route} from "react-router-dom";
 import Header from './components/header';
 import ABOUT from './components/about';
 import Products from "./components/pdoduct";
@@ -10,53 +10,9 @@ import ProductDetails from "./components/productDetails";
 import SignupForm from "./Authentication/signup";
 import Password from "./Authentication/newPassword";
 import PrivateRoute from "./Authentication/privateRoute";
-
+import ProductsArr from "./components/productData";
 
 function App() {
-  const productsArr = [
-
-    {
-    
-    title: 'Album 1',
-    
-    price: 100,
-    
-    imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%201.png',
-    image1: 'https://prasadyash2411.github.io/ecom-website/img/Album%201.png',
-    image2:'https://prasadyash2411.github.io/ecom-website/img/Album%203.png'
-    },
-    
-    {
-    
-    title: 'Album 2',
-    
-    price: 50,
-    
-    imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%202.png',
-    
-    },
-    
-    {
-    
-    title: 'Album 3',
-    
-    price: 70,
-    
-    imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%203.png',
-    
-    },
-    
-    {
-    
-    title: 'Album 4',
-    
-    price: 100,
-    
-    imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%204.png',
-    
-    }
-    
-    ]
   return (
     <Router>
       <Header />
@@ -67,7 +23,7 @@ function App() {
           <Route path="store" element={<Products />} />
         </Route>
         <Route path="/contact" element={<Contact />} />
-        <Route path="/product/:index" element={<ProductDetails products={productsArr} />} />
+        <Route path="/product/:index" element={<ProductDetails products={ProductsArr} />} />
         <Route path="/home" element={<Home />} />
         <Route path="/password" element={<Password />} />
       </Routes>

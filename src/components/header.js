@@ -13,7 +13,6 @@ const Header = ()=> {
   };
     const { cart } = useCart();
     const authCtx = useContext(AuthContext);
-    const isLoggedIn = authCtx.isLoggedIn;
     const handleLogout = () => {
       authCtx.logout();
     };
